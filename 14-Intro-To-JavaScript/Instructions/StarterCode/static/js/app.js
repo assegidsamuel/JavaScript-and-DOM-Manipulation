@@ -16,8 +16,17 @@ function filtertable () {
 d3.event.preventDefault();
 
 var tbody = d3.select("tbody")
+tbody.html("")
 
-tableData.forEach(row => {
+var datetime = d3.select("#datetime")
+
+var dtime = datetime.property("value")
+
+var filterdata = tableData.filter(function(e){return e.datetime==dtime})
+
+console.log(filterdata)
+
+filterdata.forEach(row => {
   tr = tbody.append('tr')
 
   td = tr.append('td').text(row.datetime)
@@ -33,4 +42,17 @@ tableData.forEach(row => {
 
 d3.select('#filter-btn').on('click', filtertable)
 
+var tbody = d3.select("tbody")
 
+tableData.forEach(row => {
+  tr = tbody.append('tr')
+
+  td = tr.append('td').text(row.datetime)
+  td = tr.append('td').text(row.city)
+  td = tr.append('td').text(row.state)
+  td = tr.append('td').text(row.country)
+  td = tr.append('td').text(row.shape)
+  td = tr.append('td').text(row.durationMinutes)
+  td = tr.append('td').text(row.comments)
+
+})
